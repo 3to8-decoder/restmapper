@@ -1,0 +1,51 @@
+Use this to map around.
+Quick example:
+
+
+  require "lib/restmapper"
+  
+  class Google
+    include RESTMapper
+    base_url 'www.google.nl'
+    
+    get :search,"/search?q=:query"  
+  end
+  
+  
+  puts Google.search(:query => "qwfghdf")
+
+We can also specify a block:
+
+    get :search,"/search?q=:query" do |result|
+      parse_method result
+    end
+
+
+Unlimited parameters
+  
+    get :search,"/search?q=:query&hl=:country" do |result|
+      parse_method result
+    end
+  
+  puts Google.search(:query => "Ruby",:country => 'en')  
+
+
+You can also specify defaults:
+
+  get :search,"/search?q=:query&hl=:country",:country=> 'en' do |result|
+    parse_method result
+  end
+  
+  puts Google.search(:query => "Ruby")  
+
+
+
+
+Please understand that this is still a work in progress.
+Post, Update en Delete will be added in time. If you cannot wait, just fork and add it yourself.
+
+
+
+
+
+
