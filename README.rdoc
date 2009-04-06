@@ -1,0 +1,16 @@
+Use this to map around.
+Quick example:
+
+<code>
+require "lib/restmapper"
+
+class Google
+  include RESTMapper
+  base_url 'www.google.nl'
+  
+  get :search,"/?q=:query"  
+  
+end
+</code>
+
+puts Google.search("qwfghdf")
